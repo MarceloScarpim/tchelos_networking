@@ -1,4 +1,5 @@
 Rails.application.routes.draw do  
+  devise_for :users, controllers: {registrations: 'users/registrations'}
   devise_for :admins, skip: [:registrations], controllers: { sessions: 'admins/sessions' }
   # root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -6,5 +7,13 @@ Rails.application.routes.draw do
     #admin/posts
     #admin/users
     root to: "home#index"
+    resources :admins
+    resources :users, only: :index
+  end
+
+  root to: "user/timeline#index"
+
+  namespace :user do        
+    resources :user
   end
 end
