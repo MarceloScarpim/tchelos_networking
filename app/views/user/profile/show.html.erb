@@ -22,8 +22,10 @@
       </div>
     </div>
 
-    <% current_user.posts.order(created_at: :desc).each do |post| %>
+    <div class="col-lg-6">
+    <% @current_user.posts.order(created_at: :desc).each do |post| %>
       <%= render "user/post_card", post: post %>
     <% end %>
+    </div>
   </div>
 </div>
